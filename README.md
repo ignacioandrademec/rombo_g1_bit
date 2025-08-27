@@ -1,1 +1,2 @@
 # rombo_g1_bit
+27/08/2025= git commit -m "Se adelanta la creación de controladores de creación y lectura de usuarios, se prueba con postman satisfactoriamente, se crearon los modelos correspondientes con sus rutas"
