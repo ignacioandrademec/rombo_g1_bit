@@ -1,0 +1,50 @@
+<div class="principal">
+    <div class="formulario">
+        <form class="formulario-contenedor">
+            <div>
+                <div>
+                    <label for="">nombre del label 1</label>
+                    <input type="text">
+                </div>
+                <div>
+                    <label for="">nombre del label 2</label>
+                    <input type="text">
+                </div>
+                <div>
+                    <label for="">nombre del label 3</label>
+                    <input type="text">
+                </div>
+                <div>
+                    <label for="">nombre del label 4</label>
+                    <input type="text">
+                </div>
+            </div>
+            <div>
+                <label for="">mes</label>
+                <div>
+                    <p>desde</p>
+                    <select>
+                        @for (mes of meses; track $index) {
+                            <option>
+                                {{mes}}
+                            </option>
+                        }
+                    </select>
+                    <p>hasta</p>
+                    <select>
+                        @for (mes of meses; track $index) {
+                            <option>
+                                {{mes}}
+                            </option>
+                        }
+                    </select>
+                </div>
+                <div>
+                    @for (res of resultado2; track $index) {
+                        {{res}}
+                    }
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
