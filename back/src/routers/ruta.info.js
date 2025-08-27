@@ -1,5 +1,5 @@
 import { Router } from "express";
-import controladorInfo from "../controladores/controlador.info.js";
+import controladorInfo from "../controllers/controlador.info.js";
 
 const rutaInfo = Router()
 

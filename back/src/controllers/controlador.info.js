@@ -1,4 +1,4 @@
-import modeloInfo from "../modelos/modelo.info.js";
+import modeloInfo from "../models/modelo.info.js";
 
 const controladorInfo = {
     read: async (req, res)=>{
