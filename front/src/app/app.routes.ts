@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
-import { Navegador } from './componentes/compartido/navegador/navegador';
 import { Principal } from './componentes/paginas/principal/principal';
+import { PaginaPDF } from './componentes/paginas/pagina-pdf/pagina-pdf';
 
 export const routes: Routes = [
     {
@@ -12,5 +12,10 @@ export const routes: Routes = [
         path: "principal",
         component: Principal,
         title: "pagina | principal"
-    }
+    },
+    {
+        path: "pagina-pdf",
+        component: PaginaPDF,
+        title: "pagina | pagina-pdf"
+    },
 ];

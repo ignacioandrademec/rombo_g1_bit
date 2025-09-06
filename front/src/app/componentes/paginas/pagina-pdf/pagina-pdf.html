@@ -1,0 +1,19 @@
+<div class="pagina-pdf">
+    <h2>pagina</h2>
+    <div>
+        <label for=""></label>
+        <input type="file" name="file" (change)="onFileSelected($event)" accept=".json" />
+        <button (click)="uploadFile()">Enviar</button>
+    </div>
+    @if (!infoData) {
+        
+    } @else {
+        <div>
+            <button (click)="crearGrafico()">generar grafico</button>
+        </div>
+    }
+</div>
+@if (this.llamarComponente.valor) {
+    <app-componente-pdf />
+} @else {}
+

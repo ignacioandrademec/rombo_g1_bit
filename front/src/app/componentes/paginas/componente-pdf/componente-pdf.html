@@ -1,1 +1,17 @@
-<p>componente-pdf works!</p>
+<div class="componente-pdf">
+    <button (click)="cerrarVentana()">cerrar</button>
+    <p>componente-pdf works!</p>
+    <div>
+        <p>{{getData.info1!}}</p>
+        <p>{{getData.info2!}}</p>
+        <p>{{getData.info3!}}</p>
+    </div>
+    <apx-chart
+        #chart
+        [series]="chartOptions.series!"
+        [chart]="chartOptions.chart!"
+        [xaxis]="chartOptions.xaxis!"
+        [title]="chartOptions.title!"
+    ></apx-chart>
+    <button (click)="generarPDF()">generar PDF</button>
+</div>

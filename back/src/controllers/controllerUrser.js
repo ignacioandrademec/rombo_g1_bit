@@ -1,6 +1,5 @@
 import modelUser from "../models/modelUser.js";
 
-
 const controllerUser = {
     crearUsuario: async(sol , res)=>{
         try{

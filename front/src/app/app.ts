@@ -3,9 +3,10 @@ import { RouterOutlet } from '@angular/router';
 import { Navegador } from './componentes/compartido/navegador/navegador';
 import { PieDePagina } from './componentes/compartido/pie-de-pagina/pie-de-pagina';
 
+
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, Navegador, PieDePagina],
+  imports: [RouterOutlet, Navegador, PieDePagina,],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
