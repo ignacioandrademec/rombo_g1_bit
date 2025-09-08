@@ -46,7 +46,7 @@ infoData:string = ""
 
     this.subirArchivo.sendFile(formData).subscribe((res:any)=>{
       console.log(res);
-      this.infoData = res.data2._id
+      this.infoData = res.datosFinancieros._id
       console.log(this.infoData);
     });
   }

@@ -30,62 +30,69 @@ export type ChartOptions = {
 })
 export class ComponentePDF implements OnInit {
   @ViewChild("chart") chart!: ChartComponent;
-  public chartOptions: Partial<ChartOptions>;
+  public chartOptions!: Partial<ChartOptions>;
 
   llamarComponente = inject(LlamarComponente)
   obtenerArchivo = inject(ObtenerArchivo)
   getId!:string 
   getData: any
+  data: Array<string> = []
 
   ngOnInit(): void {
-    this.getData
     /* recibir id de la informacion */
     this.llamarComponente.idTransfer.subscribe(response => {
       this.getId = response
-      console.log(this.getId);
-    /* obtener los datos y borrar la informacion de la base de datos */
-    this.obtenerArchivo.obtenerArchivo(this.getId).subscribe((res:any)=>{
-      console.log(res);
-      this.getData = res.data
     })
+    /* obtener los datos, borrar la informacion de la base de datos y crear la grafica*/
+    this.obtenerArchivo.obtenerArchivo(this.getId).subscribe((res:any)=>{
+      //obtener datos
+      this.getData = res.data
+      console.log(this.getData);
+      const {_id, __v, ...nuevoDato} = this.getData
+      console.log(nuevoDato);
+      //procesar datos
+      this.data = Object.keys(nuevoDato);
+      var arry =[]
+      for(const meses in nuevoDato){
+        console.log(meses, nuevoDato[meses][0].ingresos - nuevoDato[meses][1].gastos );
+        var valor = nuevoDato[meses][0].ingresos - nuevoDato[meses][1].gastos
+        arry.push(valor)
+      };
+      console.log(arry);
+      // grafico
+      this.chartOptions = {
+        series: [
+          {
+            name: "My-series",
+            data: arry
+          }
+        ],
+        chart: {
+          id: 'ventasChart',
+          height: 350,
+          width: 1000,
+          type: "area",
+          zoom: {
+            enabled: false
+          }
+        },
+        title: {
+          text: "My First Angular Chart"
+        },
+        xaxis: {
+          categories: this.data,
+          labels: {
+            style: {
+              fontSize: '25px'
+            }
+          }
+        }
+      };
     })
   }
 
   cerrarVentana(){
     window.location.reload()
-  }
-
-
-  // grafico
-  constructor() {
-    this.chartOptions = {
-      series: [
-        {
-          name: "My-series",
-          data: [10, 41, 35, 51, 49, 62, 69, 91, 167]
-        }
-      ],
-      chart: {
-        id: 'ventasChart',
-        height: 350,
-        width: 1000,
-        type: "line",
-        zoom: {
-          enabled: false
-        }
-      },
-      title: {
-        text: "My First Angular Chart"
-      },
-      xaxis: {
-        categories: ["Jan", "Feb",  "Mar",  "Apr",  "May",  "Jun",  "Jul",  "Aug"],
-        labels: {
-          style: {
-            fontSize: '25px'
-          }
-        }
-      }
-    };
   }
 
   //crear PDF

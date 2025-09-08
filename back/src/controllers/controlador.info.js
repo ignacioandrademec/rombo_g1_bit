@@ -37,7 +37,7 @@ const controladorInfo = {
                         const infoSave = new modeloInfo(jsonData)
                         infoSave.save()
                         res.status(200).json({
-                            data2:infoSave
+                            datosFinancieros:infoSave
                         })
                     })
                 })
