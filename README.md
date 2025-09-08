@@ -12,5 +12,5 @@
 ### back
 - se creo los controladore y la ruta para recibir archivos .json 
 
-## commit 06/09/2025:
+## commit 08/09/2025:
 - se actualizo la grafica

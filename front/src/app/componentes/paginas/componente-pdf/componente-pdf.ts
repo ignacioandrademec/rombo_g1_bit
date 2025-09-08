@@ -37,6 +37,8 @@ export class ComponentePDF implements OnInit {
   getId!:string 
   getData: any
   data: Array<string> = []
+  ingresos: Array<string> = []
+  gastos: Array<string> = []
 
   ngOnInit(): void {
     /* recibir id de la informacion */
@@ -55,11 +57,17 @@ export class ComponentePDF implements OnInit {
       var arry =[]
       for(const meses in nuevoDato){
         console.log(meses, nuevoDato[meses][0].ingresos - nuevoDato[meses][1].gastos );
-        var valor = nuevoDato[meses][0].ingresos - nuevoDato[meses][1].gastos
-        arry.push(valor)
+        var ingresosPorMes = nuevoDato[meses][0].ingresos
+        var gastosPorMes = nuevoDato[meses][1].gastos
+        var balance = ingresosPorMes - gastosPorMes
+        arry.push(balance)
+        this.ingresos.push(ingresosPorMes)
+        this.gastos.push(gastosPorMes)
       };
       console.log(arry);
-      // grafico
+      console.log(this.ingresos);
+      console.log(this.gastos);
+      // crear grafico
       this.chartOptions = {
         series: [
           {
@@ -104,7 +112,7 @@ export class ComponentePDF implements OnInit {
         { text: 'Reporte de Ventas', style: 'header' },
         {
           image: result.imgURI,
-          width: 500
+          width: 500,
         }
       ],
       styles: {

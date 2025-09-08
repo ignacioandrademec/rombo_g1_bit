@@ -1,14 +1,36 @@
 <div class="componente-pdf">
     <button (click)="cerrarVentana()">cerrar</button>
-    <p>componente-pdf works!</p>
-    @if (chartOptions) {
-        <apx-chart
-            #chart
-            [series]="chartOptions.series!"
-            [chart]="chartOptions.chart!"
-            [xaxis]="chartOptions.xaxis!"
-            [title]="chartOptions.title!"
-        ></apx-chart>
-    }
+    <div>
+        @if (chartOptions) {
+            <apx-chart
+                #chart
+                [series]="chartOptions.series!"
+                [chart]="chartOptions.chart!"
+                [xaxis]="chartOptions.xaxis!"
+                [title]="chartOptions.title!"
+            ></apx-chart>
+        }
+    </div>
+    <table>
+        <thead>
+            <tr>
+                @for (meses of data; track $index) {
+                    <th>{{meses}}</th>
+                }
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                @for (ingreso of ingresos; track $index) {
+                    <td>{{ingreso}}</td>
+                }
+            </tr>
+            <tr>
+                @for (gasto of gastos; track $index) {
+                    <td>{{gasto}}</td>
+                }
+            </tr>
+        </tbody>
+    </table>
     <button (click)="generarPDF()">generar PDF</button>
 </div>
