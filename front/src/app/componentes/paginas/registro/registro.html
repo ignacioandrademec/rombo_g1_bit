@@ -1,0 +1,27 @@
+<div class="registro-container">
+  <h2>Registro de Usuario</h2>
+  <form>
+    <label for="nombre">Nombre</label>
+    <input type="text" id="nombre" placeholder="Ingresa tu nombre" required>
+
+    <label for="tipoId">Tipo de Identificación</label>
+    <select id="tipoId" required>
+      <option value="">Seleccione...</option>
+      <option value="cc">Cédula de Ciudadanía</option>
+      <option value="ti">Tarjeta de Identidad</option>
+      <option value="ce">Cédula de Extranjería</option>
+      <option value="pp">Pasaporte</option>
+    </select>
+
+    <label for="numId">Número de Identificación</label>
+    <input type="text" id="numId" placeholder="Ej: 1234567890" required>
+
+    <label for="email">Email</label>
+    <input type="email" id="email" placeholder="ejemplo@correo.com" required>
+
+    <label for="password">Contraseña</label>
+    <input type="password" id="password" placeholder="Crea una contraseña" required>
+
+    <button type="submit">Registrarse</button>
+  </form>
+</div>

@@ -1,0 +1,104 @@
+/* Fuente y base */
+* {
+  font-family: Arial, sans-serif;
+  box-sizing: border-box;
+}
+
+/* Contenedor general (login y registro) */
+.login-container,
+.registro-container {
+  max-width: 420px;
+  margin: 80px auto;
+  padding: 30px;
+  border-radius: 12px;
+  background: #ffffff;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+}
+
+/* Títulos */
+.login-container h2,
+.registro-container h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 26px;
+  color: #0ea5e9;
+  font-weight: bold;
+}
+
+/* Etiquetas */
+.login-container label,
+.registro-container label {
+  display: block;
+  font-weight: bold;
+  margin: 10px 0 5px;
+  color: #444;
+  font-size: 15px;
+}
+
+/* Inputs y selects */
+.login-container input,
+.registro-container input,
+.registro-container select {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  outline: none;
+  transition: border-color 0.3s, box-shadow 0.3s;
+  margin-bottom: 15px;
+  font-size: 15px;
+}
+
+.login-container input:focus,
+.registro-container input:focus,
+.registro-container select:focus {
+  border-color: #0ea5e9;
+  box-shadow: 0 0 5px rgba(14, 165, 233, 0.5);
+}
+
+/* Botones */
+.login-container button,
+.registro-container button {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  background: #0ea5e9;
+  color: white;
+  font-weight: bold;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.login-container button:hover,
+.registro-container button:hover {
+  background: #0284c7;
+}
+
+.login-container button:disabled,
+.registro-container button:disabled {
+  background: #a0a0a0;
+  cursor: not-allowed;
+}
+
+/* Enlaces */
+.forgot-password,
+.register-link {
+  margin-top: 12px;
+  text-align: center;
+}
+
+.forgot-password a,
+.register-link a {
+  color: #0ea5e9;
+  text-decoration: none;
+  font-size: 14px;
+  transition: color 0.3s;
+}
+
+.forgot-password a:hover,
+.register-link a:hover {
+  color: #0284c7;
+  text-decoration: underline;
+}
