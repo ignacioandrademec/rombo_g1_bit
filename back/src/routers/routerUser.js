@@ -9,4 +9,7 @@ routerUser.post("/", controllerUser.crearUsuario);
 // Leer usuario por id
 routerUser.get("/:id", controllerUser.leerUsuario);
 
+// Iniciar Sesión
+routerUser.post("/login", controllerUser.loginUsuario);
+
 export default routerUser;
