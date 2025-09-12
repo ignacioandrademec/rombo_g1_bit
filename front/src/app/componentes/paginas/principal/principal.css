@@ -1,9 +1,107 @@
-.principal{
-    width: 90%;
-    min-height: 650px;
-    margin: 40px auto;
-    background-color: rgb(173, 173, 173);
-    display: flex;
-    justify-content: center;
-    align-items: center;
+/* Contenedor general */
+.reporteador {
+  text-align: center;
+  margin: 40px auto;
+  padding: 40px;
+  width: 90%;
+  border-radius: 20px;
+  background: linear-gradient(135deg, #e0f2fe, #f0f9ff);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+  animation: fadeIn 1s ease-in-out;
+  font-family: Arial, sans-serif; /* Fuente sencilla */
+}
+
+/* Encabezado */
+.encabezado img.img-header {
+  width: 160px;
+  margin-bottom: 20px;
+  animation: zoomIn 1s ease;
+}
+
+.encabezado h3 {
+  color: #0ea5e9; /* azul ejecutivo */
+  font-size: 34px;
+  font-weight: bold;
+  margin: 10px 0;
+  letter-spacing: 1px;
+  font-family: Arial, sans-serif; /* Fuente */
+}
+
+.encabezado .subtitulo {
+  font-size: 20px;
+  color: #333;
+  margin-bottom: 20px;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.6;
+  font-family: Arial, sans-serif; /* Fuente */
+}
+
+.encabezado .linea {
+  width: 120px;
+  height: 5px;
+  background: #0ea5e9;
+  margin: 0 auto 30px;
+  border-radius: 5px;
+  animation: crecer 1s ease-in-out;
+}
+
+/* Beneficios */
+.beneficios {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 25px;
+}
+
+.beneficio {
+  width: 30%;
+  min-width: 260px;
+  background: #ffffff;
+  padding: 25px;
+  border-radius: 18px;
+  box-shadow: 0 5px 18px rgba(0,0,0,0.12);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  font-family: Arial, sans-serif; /* Fuente */
+}
+
+.beneficio:hover {
+  transform: translateY(-10px) scale(1.05);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.18);
+}
+
+.beneficio img {
+  width: 120px;
+  height: 120px;
+  margin-bottom: 18px;
+  transition: transform 0.3s ease;
+}
+
+.beneficio:hover img {
+  transform: rotate(-5deg) scale(1.15);
+}
+
+.beneficio p {
+  font-size: 17px;
+  font-weight: 500;
+  color: #333;
+  line-height: 1.5;
+  font-family: Arial, sans-serif; /* Fuente */
+}
+
+/* Animaciones */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes zoomIn {
+  from { transform: scale(0.7); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+@keyframes crecer {
+  from { width: 0; }
+  to { width: 120px; }
 }

@@ -1,10 +1,12 @@
 import { Router } from "express";
-import controladorUser from "../controllers/controllerUrser.js";
+import controllerUser from "../controllers/controllerUser.js"; // ✅ solo una importación
 
 const routerUser = Router();
 
-routerUser.post("/", controladorUser.crearUsuario);
+// Crear usuario
+routerUser.post("/", controllerUser.crearUsuario);
 
-routerUser.get("/:id", controladorUser.leerUsuario);
+// Leer usuario por id
+routerUser.get("/:id", controllerUser.leerUsuario);
 
 export default routerUser;
