@@ -2,10 +2,11 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../../../service/auth';
 import { CommonModule } from '@angular/common';
+
 @Component({
   selector: 'app-login',
-  standalone: true, // ✅ necesario para usar imports
-  imports: [CommonModule], // ✅ aquí agregamos CommonModule para *ngIf
+  standalone: true,
+  imports: [CommonModule],
   templateUrl: './login.html',
   styleUrls: ['./login.css']
 })
@@ -19,13 +20,21 @@ export class LoginComponent {
 
     const form = event.target as HTMLFormElement;
     const formData = new FormData(form);
-    const usuario = formData.get('usuario') as string;
+
+    // 🔹 Cambiado a email para coincidir con el backend
+    const email = formData.get('email') as string;
     const password = formData.get('password') as string;
 
-    this.authService.login(usuario, password).subscribe({
+    this.authService.login(email, password).subscribe({
       next: (res) => {
-        localStorage.setItem('userId', res.data);
-        this.router.navigate(['/principal']);
+        if (res.result === 'fine') {
+          // 🔹 Guardamos el token en localStorage
+          localStorage.setItem('token', res.data);
+          this.router.navigate(['/principal']);
+        } else {
+          this.mostrarError = true;
+          setTimeout(() => (this.mostrarError = false), 3000);
+        }
       },
       error: () => {
         this.mostrarError = true;
