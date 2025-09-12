@@ -7,6 +7,7 @@ import html2canvas from 'html2canvas';
 import { NgApexchartsModule } from 'ng-apexcharts';
 import { ChartComponent, ApexOptions } from "ng-apexcharts";
 import { ServiceImg64 } from '../../../service/service-img64';
+import { Location } from '@angular/common';
 
 (<any>pdfMake).addVirtualFileSystem(pdfFonts);
 
@@ -25,6 +26,7 @@ export class ComponentePDF implements OnChanges {
   llamarComponente = inject(LlamarComponente)
   obtenerArchivo = inject(ObtenerArchivo)
   imagenService = inject(ServiceImg64)
+  location = inject(Location)
   @Input() getCat:any
   @Input() getId:string = ""
   @Input() getName:string = ""
@@ -38,6 +40,10 @@ export class ComponentePDF implements OnChanges {
   balancesTotal: number = 0
 
   ngOnChanges(): void {
+
+    this.location.onUrlChange(() => {
+      this.llamarComponente.valor = false
+    });
 
     /* obtener los datos, borrar la informacion de la base de datos y crear la grafica*/
     this.obtenerArchivo.obtenerArchivo(this.getId).subscribe((res:any)=>{
