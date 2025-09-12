@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class AuthService {
-  private URL = 'http://localhost:3000/auth/login'; // cambia si tu backend tiene otro puerto o endpoint
+  private URL = 'http://localhost:3000/user/login'; // cambia si tu backend tiene otro puerto o endpoint
 
   constructor(private http: HttpClient) {}
 

@@ -26,6 +26,7 @@ export class LoginComponent {
       next: (res) => {
         localStorage.setItem('userId', res.data);
         this.router.navigate(['/principal']);
+        console.log(res);
       },
       error: () => {
         this.mostrarError = true;

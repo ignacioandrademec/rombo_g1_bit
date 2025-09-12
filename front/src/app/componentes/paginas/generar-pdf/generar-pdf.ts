@@ -60,7 +60,7 @@ infoData:string = ""
 
   crearGrafico(){
     if(this.infoData){
-      console.log(this.llamarComponente.valor[`ventana1`]);
+        this.llamarComponente.valor[`ventana${2}`] = true
     } else {
       Swal.fire({
         icon: "error",

@@ -5,7 +5,7 @@ import modelUser from "../models/modelUser.js";
 const controllerAuth = {
     iniciarSesion: async (sol, res) => {
         try {
-            const { email, password } = sol.body;
+            const { email, password } = sol.params;
             const userFound = await modelUser.findOne({ email });
 
             if (!userFound) {

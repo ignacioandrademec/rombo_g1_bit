@@ -3,6 +3,7 @@ import { LlamarComponente } from '../../../service/llamar-componente';
 import { ObtenerArchivo } from '../../../service/obtener-archivo';
 import * as pdfMake from 'pdfmake/build/pdfmake';
 import * as pdfFonts from 'pdfmake/build/vfs_fonts';
+import html2canvas from 'html2canvas';
 import { NgApexchartsModule } from 'ng-apexcharts';
 import { ChartComponent, ApexOptions } from "ng-apexcharts";
 
@@ -106,7 +107,7 @@ export class ComponentePDF implements OnChanges {
             }
           },
           title: {
-            text: "My First Angular Chart"
+            text: `grafica tipo ${this.getCat}`
           },
           xaxis: {
             categories: this.data,
@@ -128,52 +129,36 @@ export class ComponentePDF implements OnChanges {
   //crear PDF
   async generarPDF(){
     const result = await ApexCharts.exec('ventasChart', 'dataURI');
+    const tabla = document.getElementById("tablaIngresos")
+    
+    if (!tabla) {
+      console.error('Tabla no encontrada');
+      return;
+    }
 
-    const docDefinition = {
-      content: [
-        { text: this.getName, style: 'header' },
-        {
-          image: result.imgURI,
-          width: 500,
-        },
-        {
-		    	style: 'tableExample',
-		    	table: {
-		    		headerRows: 1,
-		    		body: [
-		    			[{text: 'Header 1', style: 'tableHeader'}, {text: 'Header 2', style: 'tableHeader'}, {text: 'Header 3', style: 'tableHeader'}],
-		    			['Sample value 1', 'Sample value 2', 'Sample value 3'],
-		    			['Sample value 1', 'Sample value 2', 'Sample value 3'],
-		    			['Sample value 1', 'Sample value 2', 'Sample value 3'],
-		    			['Sample value 1', 'Sample value 2', 'Sample value 3'],
-		    			['Sample value 1', 'Sample value 2', 'Sample value 3'],
-		    		]
-		    	},
-		    	layout: {
-		    		hLineWidth: function (i:number, node: any) {
-		    			return (i === 0 || i === node.table.body.length) ? 2 : 1;
-		    		},
-		    		vLineWidth: function (i:number, node: any) {
-		    			return (i === 0 || i === node.table.widths.length) ? 2 : 1;
-		    		},
-		    		hLineColor: function (i:number, node: any) {
-		    			return (i === 0 || i === node.table.body.length) ? 'black' : 'gray';
-		    		},
-		    		vLineColor: function (i:number, node: any) {
-		    			return (i === 0 || i === node.table.widths.length) ? 'black' : 'gray';
-		    		},
-		      },
-        },
-      ],
-      styles: {
-        header: {
-          fontSize: 22,
-          bold: true,
-          margin: [0, 0, 0, 20]
+    html2canvas(tabla).then((canvas)=>{
+      const imagenBase64 = canvas.toDataURL('image/png');
+
+      const docDefinition = {
+        content: [
+          { text: this.getName, style: 'header' },
+          {
+            image: result.imgURI,
+            width: 500,
+          },
+          { text: 'Tabla en PDF', style: 'header' },
+          { image: imagenBase64, width: 500 }
+        ],
+        styles: {
+          header: {
+            fontSize: 22,
+            bold: true,
+            margin: [0, 0, 0, 20]
+          }
         }
-      }
-    };
-
-    pdfMake.createPdf(docDefinition as any).open();
+      };
+      
+      pdfMake.createPdf(docDefinition as any).open();
+    })
   }
 }
