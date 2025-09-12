@@ -14,3 +14,11 @@
 
 ## commit 08/09/2025:
 - se actualizo la grafica
+
+## commit 11/09/2025:
+### back
+- se puede leer archivos .csv 
+
+### front
+- se agrego 2 inputs: tipo de grafico y nombre del grafico
+- se agrego la eleccion de tipos de grafico (line, bar, pie)

@@ -5,8 +5,22 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root'
 })
 export class LlamarComponente {
+  ventanas: number[] = []
+  valor: any = {}
+  
+
   /* abrir/cerrar ventana */
-  valor:boolean = false
+  configArray(array:number[]){
+    this.ventanas = array
+      this.valor[`ventana${1}`] = false
+      this.valor[`ventana${2}`] = false
+      this.valor[`ventana${3}`] = false
+      this.valor[`ventana${4}`] = false
+      this.valor[`ventana${5}`] = false
+  }
+
+  
+  
   /* transferir informacion */
   private id = new BehaviorSubject<string>("");
   idTransfer = this.id.asObservable();

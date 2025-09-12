@@ -2,6 +2,7 @@ import modeloInfo from "../models/modelo.info.js";
 import savefile from "../multer/multer.config.js"
 import fs from "node:fs"
 import path from "node:path";
+import csv from "csvtojson"
 
 const controladorInfo = {
     getAndHandleFile: async (req, res)=>{
@@ -9,7 +10,35 @@ const controladorInfo = {
             if(!req.file){
                 res.status(400).json({
                     data:"no se pudo recibir el archivo"
-                })
+                });
+            };
+            if (req.file.mimetype == "text/csv") {
+                try {
+                    const filePath = path.join('uploads', req.file.filename);
+                    const jsonArray = await csv().fromFile(filePath);
+
+                    const resultado = {};
+
+                    jsonArray.forEach((item)=>{
+                        const mes = item.mes.toLowerCase(); // "enero"
+                        const ingresos = Number(item.ingresos);
+                        const gastos = Number(item.gastos);
+
+                        resultado[mes] = { ingresos, gastos };
+                    });
+
+                    const infosave = new modeloInfo(resultado);
+                    infosave.save()
+                    fs.unlinkSync(filePath);
+                    res.status(200).json({ 
+                        message: 'Archivo CSV importado correctamente.', 
+                        datosFinancieros: infosave
+                    });
+                } catch (error) {
+                    res.status(500).json({ 
+                        message: 'error al importar CSV.', 
+                        data: error.message });
+                }
             } else {
                 console.log(req.file);
                 savefile(req.file)
@@ -18,13 +47,19 @@ const controladorInfo = {
                     if (err) {
                         return res.status(404).json({ error: 'Archivo no encontrado' });
                     }
-                    let jsonData;
+                    let fileData;
                     fs.readFile(filePath, 'utf8', (readErr, data) =>{
                         if (readErr) {
                             return res.status(500).json({ error: 'Error al leer el archivo' });
                         }
                         try {
-                            jsonData = JSON.parse(data);
+                            fileData = JSON.parse(data);
+                            const infoSave = new modeloInfo(fileData)
+                            infoSave.save()
+                            res.status(200).json({
+                                mensage: "se registro el archivo .json",
+                                datosFinancieros: infoSave
+                            })
                         } catch (parseErr) {
                             return res.status(400).json({ error: 'Archivo JSON inválido' });
                         }
@@ -32,12 +67,6 @@ const controladorInfo = {
                             if (deleteErr) {
                                 return res.status(500).json({ error: 'Error al borrar el archivo' });
                             }
-                        })
-                        
-                        const infoSave = new modeloInfo(jsonData)
-                        infoSave.save()
-                        res.status(200).json({
-                            datosFinancieros:infoSave
                         })
                     })
                 })

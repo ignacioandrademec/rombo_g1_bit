@@ -1,0 +1,40 @@
+<div class="pagina-pdf">
+    <h2>pagina</h2>
+    <div>
+        <form (ngSubmit)="uploadFile()">
+            <div>
+                <label for="archivo">ingrese un archivo json/csv</label>
+                <input id="archivo" type="file" [(ngModel)]="file" (change)="onFileSelected($event)" name="file" accept=".json, .csv" />
+            </div>
+            <div>
+                <label for="graficaNombre">nombre del grafico</label>
+                <input id="graficaNombre" type="text" [(ngModel)]="graficoNombre" name="graficaNombre">
+            </div>
+            <div>
+                <label for="categoria">tipo de grafico</label>
+                <select id="categoria" [(ngModel)]="cat" name="cat">
+                    <option value="line">line</option>
+                    <option value="bar">bar</option>
+                    <option value="pie">pie</option>
+                </select>
+            </div>
+            <button type="submit">Enviar</button>
+        </form>
+        @if (!infoData) {
+            
+        } @else {
+            <div>
+                <button (click)="crearGrafico()">generar grafico</button>
+            </div>
+        }
+    </div>
+</div>
+<div>
+    @if (this.llamarComponente.valor[`ventana${3}`]) {
+        <app-componente-pdf [getId]="infoData" [getCat]="cat" [getName]="graficoNombre" />
+    } @else {
+        <div class="componente-espera">
+            <h2>esperando archivo</h2>
+        </div>
+    }
+</div>

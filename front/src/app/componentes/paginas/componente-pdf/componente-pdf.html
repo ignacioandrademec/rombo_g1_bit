@@ -8,27 +8,42 @@
                 [chart]="chartOptions.chart!"
                 [xaxis]="chartOptions.xaxis!"
                 [title]="chartOptions.title!"
+                [labels]="chartOptions.labels!"
+                [dataLabels]="chartOptions.dataLabels!"
             ></apx-chart>
         }
     </div>
     <table>
         <thead>
             <tr>
+                <th>meses</th>
                 @for (meses of data; track $index) {
                     <th>{{meses}}</th>
                 }
+                <th>total</th>
             </tr>
         </thead>
         <tbody>
             <tr>
+                <td>ingresos</td>
                 @for (ingreso of ingresos; track $index) {
                     <td>{{ingreso}}</td>
                 }
+                <td>{{ingresosTotal}}</td>
             </tr>
             <tr>
+                <td>gastos</td>
                 @for (gasto of gastos; track $index) {
                     <td>{{gasto}}</td>
                 }
+                <td>{{gastosTotal}}</td>
+            </tr>
+            <tr>
+                <td>balance</td>
+                @for (balance of balances; track $index) {
+                    <td>{{balance}}</td>
+                }
+                <td>{{balancesTotal}}</td>
             </tr>
         </tbody>
     </table>
