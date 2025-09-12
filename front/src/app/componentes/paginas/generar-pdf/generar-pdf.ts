@@ -52,7 +52,6 @@ infoData:string = ""
         this.subirArchivo.sendFile(formData).subscribe((res:any)=>{
           console.log(res);
           this.infoData = res.datosFinancieros._id
-          console.log(this.infoData);
         });
       
     }

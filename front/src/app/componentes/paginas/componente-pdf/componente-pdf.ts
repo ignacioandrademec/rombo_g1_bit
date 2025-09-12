@@ -43,15 +43,12 @@ export class ComponentePDF implements OnChanges {
     this.obtenerArchivo.obtenerArchivo(this.getId).subscribe((res:any)=>{
       //obtener datos
       this.getData = res.data
-      console.log(this.getData);
       const {_id, __v, ...nuevoDato} = this.getData
-      console.log(nuevoDato);
 
       //procesar datos
       this.data = Object.keys(nuevoDato);
       var arry:any = []
       for(const meses in nuevoDato){
-        console.log(meses, nuevoDato[meses].ingresos - nuevoDato[meses].gastos );
         var ingresosPorMes = nuevoDato[meses].ingresos
         var gastosPorMes = nuevoDato[meses].gastos
         var balancePorMes = nuevoDato[meses].ingresos - nuevoDato[meses].gastos
@@ -64,10 +61,6 @@ export class ComponentePDF implements OnChanges {
         this.gastos.push(gastosPorMes)
         this.balances.push(balancePorMes)
       };
-      console.log("meses:",this.data);
-      console.log("valores", arry);
-      console.log(this.ingresos);
-      console.log(this.gastos);
 
       // crear grafico
       if (this.getCat == "pie") {
@@ -145,11 +138,15 @@ export class ComponentePDF implements OnChanges {
       const docDefinition = {
         pageSize: 'LETTER',
         content: [
-          { image: imagen64S, width: 50, alignment: 'right'},
+          { 
+            image: imagen64S, 
+            width: 50, 
+            alignment: 'right'
+          },
           { text: this.getName, style: 'header', alignment: 'center' },
           {
             image: result.imgURI,
-            width: 440,
+            width: this.getCat == "pie" ? 350 : 600,
             alignment: 'center'
           },
           { text: 'Tabla de valores', style: 'header', alignment: 'center' },
