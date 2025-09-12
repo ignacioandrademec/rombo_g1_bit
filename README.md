@@ -22,3 +22,7 @@
 ### front
 - se agrego 2 inputs: tipo de grafico y nombre del grafico
 - se agrego la eleccion de tipos de grafico (line, bar, pie)
+
+## commit 12/09/2025:
+- se corrigio el inicio de sesion, ahora funciona
+- se agregaron las guards y un menu altenativo al iniciar sesion 
