@@ -60,7 +60,7 @@ infoData:string = ""
 
   crearGrafico(){
     if(this.infoData){
-        this.llamarComponente.valor[`ventana${2}`] = true
+        this.llamarComponente.valor = true
     } else {
       Swal.fire({
         icon: "error",

@@ -34,6 +34,9 @@ export class LoginComponent {
         } else {
           this.mostrarError = true;
           setTimeout(() => (this.mostrarError = false), 3000);
+          console.log(res);
+          console.log(email);
+          console.log(password);
         }
       },
       error: () => {

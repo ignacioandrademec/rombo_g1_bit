@@ -1,5 +1,5 @@
 <div class="pagina-pdf">
-    <h2>pagina</h2>
+    <h2>generar grafico</h2>
     <div>
         <form (ngSubmit)="uploadFile()">
             <div>
@@ -18,19 +18,29 @@
                     <option value="pie">pie</option>
                 </select>
             </div>
-            <button type="submit">Enviar</button>
-        </form>
-        @if (!infoData) {
-            
-        } @else {
             <div>
-                <button (click)="crearGrafico()">generar grafico</button>
+                <div>
+                    @if(infoData){
+                        
+                    } @else {
+                        <button type="submit">Enviar</button>
+                    }
+                </div> 
             </div>
-        }
+        </form>
+        <div>
+            @if (!infoData) {
+                
+            } @else {
+                <div>
+                    <button (click)="crearGrafico()">generar grafico</button>
+                </div>
+            }
+        </div>
     </div>
 </div>
 <div>
-    @if (this.llamarComponente.valor[`ventana${2}`]) {
+    @if (this.llamarComponente.valor) {
         <app-componente-pdf [getId]="infoData" [getCat]="cat" [getName]="graficoNombre" />
     } @else {
         <div class="componente-espera">

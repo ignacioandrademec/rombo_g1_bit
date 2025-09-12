@@ -6,6 +6,7 @@ import * as pdfFonts from 'pdfmake/build/vfs_fonts';
 import html2canvas from 'html2canvas';
 import { NgApexchartsModule } from 'ng-apexcharts';
 import { ChartComponent, ApexOptions } from "ng-apexcharts";
+import { ServiceImg64 } from '../../../service/service-img64';
 
 (<any>pdfMake).addVirtualFileSystem(pdfFonts);
 
@@ -23,6 +24,7 @@ export class ComponentePDF implements OnChanges {
 
   llamarComponente = inject(LlamarComponente)
   obtenerArchivo = inject(ObtenerArchivo)
+  imagenService = inject(ServiceImg64)
   @Input() getCat:any
   @Input() getId:string = ""
   @Input() getName:string = ""
@@ -130,6 +132,7 @@ export class ComponentePDF implements OnChanges {
   async generarPDF(){
     const result = await ApexCharts.exec('ventasChart', 'dataURI');
     const tabla = document.getElementById("tablaIngresos")
+    const imagen64S = await this.imagenService.transformarImg64("imagenLogo.png")
     
     if (!tabla) {
       console.error('Tabla no encontrada');
@@ -140,14 +143,21 @@ export class ComponentePDF implements OnChanges {
       const imagenBase64 = canvas.toDataURL('image/png');
 
       const docDefinition = {
+        pageSize: 'LETTER',
         content: [
-          { text: this.getName, style: 'header' },
+          { image: imagen64S, width: 50, alignment: 'right'},
+          { text: this.getName, style: 'header', alignment: 'center' },
           {
             image: result.imgURI,
-            width: 500,
+            width: 440,
+            alignment: 'center'
           },
-          { text: 'Tabla en PDF', style: 'header' },
-          { image: imagenBase64, width: 500 }
+          { text: 'Tabla de valores', style: 'header', alignment: 'center' },
+          { 
+            image: imagenBase64, 
+            width: 500,
+            alignment: 'center'
+          }
         ],
         styles: {
           header: {

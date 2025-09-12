@@ -3,6 +3,7 @@ import { Principal } from './componentes/paginas/principal/principal';
 import { PaginaPDF } from './componentes/paginas/pagina-pdf/pagina-pdf';
 import { LoginComponent } from './componentes/paginas/login/login';
 import { Registro } from './componentes/paginas/registro/registro';
+import { actGuardGuard } from './guards/act-guard-guard';
 
 export const routes: Routes = [
   {
@@ -23,7 +24,8 @@ export const routes: Routes = [
   {
     path: "pagina-pdf",
     component: PaginaPDF,
-    title: "Página | PDF"
+    title: "Página | PDF",
+    canActivate:[actGuardGuard]
   },
   {
     path: "registro",

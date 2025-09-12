@@ -6,8 +6,13 @@
   </div>
 
   <nav>
-    <a routerLink="/login">Iniciar Sesión</a>
-    <a routerLink="/registro">Regístrate</a>
+    @if (auth.iniciarSesion()) {
+      <a routerLink="/pagina-pdf">generar pdf</a>
+      <a (click)="auth.cerrarSesion()" class="cerrarSesion">cerrar sesion</a>
+    } @else {
+      <a routerLink="/login">Iniciar Sesión</a>
+      <a routerLink="/registro">Regístrate</a>
+    }
   </nav>
 </div>
 
