@@ -1,0 +1,14 @@
+{
+    "junio":
+        {"ingresos":2000,"gastos":700},
+    "julio":
+        {"ingresos":1200,"gastos":300},
+    "agosto":
+        {"ingresos":1200,"gastos":300},
+    "septiembre":
+        {"ingresos":400,"gastos":300},
+    "octubre":
+        {"ingresos":100,"gastos":50},
+    "noviembre":
+        {"ingresos":900,"gastos":300}
+}
